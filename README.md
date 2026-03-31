@@ -32,6 +32,15 @@ Add this repo as a flake input and import its Home Manager module.
 }
 ```
 
+## Module source
+
+This repo intentionally overrides Home Manager's bundled `programs.opencode` module.
+
+The stable `release-25.11` module still lacks `programs.opencode.skills = <path>;`, which this repo uses.
+`disabledModules` turns off the caller's bundled `programs/opencode.nix`, and `imports` loads the newer upstream one instead.
+
+This flake exports modules only, so it does not need a separate root `nixpkgs` input.
+
 ## Secrets
 
 Set required secrets outside this repo.

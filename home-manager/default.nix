@@ -1,9 +1,20 @@
-{ pkgs, ... }:
+{ homeManager }:
+{ modulesPath, ... }:
 
-let
-  jsonFormat = pkgs.formats.json { };
+{
+  disabledModules = [
+    (modulesPath + "/programs/opencode.nix")
+  ];
 
-  settings = {
+  imports = [
+    (homeManager + "/modules/programs/opencode.nix")
+  ];
+
+  programs.opencode = {
+    enable = true;
+    rules = ../opencode/AGENTS.md;
+    skills = ../opencode/skills;
+    settings = {
       default_agent = "plan";
       plugin = [
         "@slkiser/opencode-quota@latest"
@@ -74,24 +85,6 @@ let
           enabledProviders = [ "openai" "copilot" "zai" ];
         };
       };
-  };
-in
-{
-  programs.opencode = {
-    enable = true;
-    rules = ../opencode/AGENTS.md;
-  };
-
-  xdg.configFile = {
-    "opencode/opencode.json" = {
-      source = jsonFormat.generate "opencode.json" ({
-        "$schema" = "https://opencode.ai/config.json";
-      } // settings);
-    };
-
-    "opencode/skills" = {
-      source = ../opencode/skills;
-      recursive = true;
     };
   };
 }
