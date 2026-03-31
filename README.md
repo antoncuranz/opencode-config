@@ -4,12 +4,7 @@ Reusable Home Manager config for OpenCode.
 
 ## What it manages
 
-- `programs.opencode.settings`
-- `programs.opencode.rules`
-- `programs.opencode.commands`
-- `programs.opencode.agents`
-- `programs.opencode.skills`
-- `programs.opencode.themes`
+- `programs.opencode.*`
 
 This writes OpenCode config into `~/.config/opencode`.
 
@@ -40,11 +35,3 @@ The stable `release-25.11` module still lacks `programs.opencode.skills = <path>
 `disabledModules` turns off the caller's bundled `programs/opencode.nix`, and `imports` loads the newer upstream one instead.
 
 This flake exports modules only, so it does not need a separate root `nixpkgs` input.
-
-## Secrets
-
-Set required secrets outside this repo.
-
-- `CONTEXT7_API_KEY`
-
-OpenCode reads the MCP header from `{env:CONTEXT7_API_KEY}`.
