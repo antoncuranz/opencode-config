@@ -1,6 +1,11 @@
-{ homeManager }:
-{ modulesPath, ... }:
+{ homeManager, nixpkgs }:
+{ modulesPath, pkgs, ... }:
 
+let
+  unstablePkgs = import nixpkgs {
+    system = pkgs.system;
+  };
+in
 {
   disabledModules = [
     (modulesPath + "/programs/opencode.nix")
@@ -12,6 +17,7 @@
 
   programs.opencode = {
     enable = true;
+    package = unstablePkgs.opencode;
     rules = ../opencode/AGENTS.md;
     skills = ../opencode/skills;
     settings = {
