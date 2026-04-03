@@ -25,6 +25,7 @@ in
       plugin = [
         "@slkiser/opencode-quota@latest"
         "superpowers@git+https://github.com/obra/superpowers.git"
+        "@tarquinen/opencode-dcp@latest"
       ];
       share = "disabled";
       autoupdate = true;
