@@ -30,7 +30,7 @@ in
       autoupdate = true;
       model = "openai/gpt-5.4";
       small_model = "github-copilot/gpt-5-mini";
-      disabled_providers = [ "opencode" "vercel" ];
+      disabled_providers = [ "opencode" ];
       agent = {
         plan = {
           color = "#1a7f37";
